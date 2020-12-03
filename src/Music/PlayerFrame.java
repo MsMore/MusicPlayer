@@ -53,12 +53,12 @@ public class PlayerFrame extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jButton3 = new javax.swing.JButton();
         jSlider1 = new javax.swing.JSlider();
+        jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -79,33 +79,33 @@ public class PlayerFrame extends javax.swing.JFrame {
         jLabel3.setText("00:00");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 41, -1));
 
-        jToggleButton1.setText("play/pause");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
-            }
-        });
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 28, 61, 41));
-
         jButton1.setText("next");
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 34, 73, -1));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 73, -1));
 
         jButton2.setText("previous");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 34, -1, -1));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         jToggleButton2.setText("jToggleButton2");
-        jPanel3.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 28, 25, -1));
+        jPanel3.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 25, -1));
 
         jButton3.setText("jButton3");
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 28, 27, -1));
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 27, -1));
 
         jSlider1.setSnapToTicks(true);
         jPanel3.add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 28, 117, -1));
+
+        jButton4.setText("| |");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 50, 50));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 272, 650, 80));
 
@@ -148,21 +148,14 @@ public class PlayerFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        player.play();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseClicked
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if(player.isStopped()){
-            player.play();
-        }
-        else{
-            player.pause();
-        }
-    }//GEN-LAST:event_jToggleButton1MouseClicked
+        player.play();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,15 +173,11 @@ public class PlayerFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PlayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+       //</editor-fold>
+       
         //</editor-fold>
 
         /* Create and display the form */
@@ -203,6 +192,7 @@ public class PlayerFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -211,13 +201,13 @@ public class PlayerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
     private MP3Player mp3Player (){
         MP3Player mp3Player = new MP3Player();
         return mp3Player;
     }
+  
     private void volumeDownControl (double valueToPlusMinus){
         Mixer.Info[] mixers = AudioSystem.getMixerInfo();
         for (Mixer.Info mixerInfo:mixers){
@@ -232,10 +222,15 @@ public class PlayerFrame extends javax.swing.JFrame {
                     if (!opened){
                         line.open();
                     }
-                    FloatControl volControl = {FloatControl} line.getControl(FloatControl.Type.VOLUME);
+                    FloatControl volControl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
                     float currentVolume = volControl.getValue();
-                }catch(Exception exception){
+                }catch(LineUnavailableException lineException){
+                }catch(IllegalArgumentsException illegalException){
                     
+                }finally{
+                    if (line != null && !opened) {
+                        line.close();
+                    }
                 }
             }
         }
