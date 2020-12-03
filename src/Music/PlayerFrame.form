@@ -101,6 +101,7 @@
                 <Property name="text" type="java.lang.String" value="play/pause"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jToggleButton1MouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
               </Events>
               <Constraints>
@@ -150,6 +151,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JSlider" name="jSlider1">
+              <Properties>
+                <Property name="snapToTicks" type="boolean" value="true"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="510" y="28" width="117" height="-1"/>

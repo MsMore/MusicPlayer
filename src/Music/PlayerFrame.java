@@ -5,17 +5,38 @@
  */
 package Music;
 
-/**
- *
- * @author 91726
- */
-public class PlayerFrame extends javax.swing.JFrame {
+import jaco.mp3.player.MP3Player;
+import java.io.File;
+import java.nio.file.Paths;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.Line;
+import javax.sound.sampled.Mixer;
 
+public class PlayerFrame extends javax.swing.JFrame {
+    
+    
+   MP3Player player;
+   File songfile;
+   String currentPath;
+   String imagePath;
+   boolean repeat = false;
+   boolean WindowCollapsed = false;
+   int xMouse, yMouse; 
+   
+   
     /**
      * Creates new form PlayerFrame
      */
     public PlayerFrame() {
         initComponents();
+        songfile = new File("C:\\Users\\91726\\Music\\songs");
+        String fileName = songfile.getName();
+        //songNameDisplay.setText(fileName);
+        player = mp3Player();
+        player.addToPlayList(songfile);
+        currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
     }
 
     /**
@@ -59,6 +80,11 @@ public class PlayerFrame extends javax.swing.JFrame {
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 41, -1));
 
         jToggleButton1.setText("play/pause");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -77,6 +103,8 @@ public class PlayerFrame extends javax.swing.JFrame {
 
         jButton3.setText("jButton3");
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 28, 27, -1));
+
+        jSlider1.setSnapToTicks(true);
         jPanel3.add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 28, 117, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 272, 650, 80));
@@ -122,7 +150,19 @@ public class PlayerFrame extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // TODO add your handling code here:
+        if(player.isStopped()){
+            player.play();
+        }
+        else{
+            player.pause();
+        }
+    }//GEN-LAST:event_jToggleButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -174,4 +214,30 @@ public class PlayerFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
+    private MP3Player mp3Player (){
+        MP3Player mp3Player = new MP3Player();
+        return mp3Player;
+    }
+    private void volumeDownControl (double valueToPlusMinus){
+        Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+        for (Mixer.Info mixerInfo:mixers){
+            Mixer mixer = AudioSystem.getMixer(mixerInfo);
+            Line.Info[] lineInfos =mixer.getTargetLineInfo();
+            for (Line.Info lineInfo: lineInfos) {
+                Line line = null;
+                boolean opened = true;
+                try{
+                    line = mixer.getLine(lineInfo);
+                    opened = line.isOpen() || line instanceof Clip;
+                    if (!opened){
+                        line.open();
+                    }
+                    FloatControl volControl = {FloatControl} line.getControl(FloatControl.Type.VOLUME);
+                    float currentVolume = volControl.getValue();
+                }catch(Exception exception){
+                    
+                }
+            }
+        }
+    }
 }
